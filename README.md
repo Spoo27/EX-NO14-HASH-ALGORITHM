@@ -27,9 +27,41 @@ To implement HASH ALGORITHM
 
 
 ## Program:
+```
 
+def compute_simple_hash(message: str) -> int:
+    temp = 0
+    for ch in message:
+        temp = temp ^ ord(ch)   # XOR with character
+        temp += ord(ch)         # Add character value
+    return temp & 0xFF          # Keep it in 1 byte (0–255)
+
+
+# Input message
+message = input("Enter the message: ")
+
+# Compute hash
+hash_value = compute_simple_hash(message)
+
+# Print hash in hex format
+print(f"Computed Hash (in hex): {hash_value:02x}")
+
+# Input received hash
+received_hex = input("Enter the received hash (in hex): ").strip()
+
+# Convert hex string to integer
+received_hash_value = int(received_hex, 16)
+
+# Compare and verify
+if hash_value == received_hash_value:
+    print("Hash verification successful. Message is unchanged.")
+else:
+    print("Hash verification failed. Message has been altered.")
+```
 
 ## Output:
+
+<img width="666" height="175" alt="image" src="https://github.com/user-attachments/assets/047d147d-bf4c-48fd-ac81-f1247450bf18" />
 
 ## Result:
 The program is executed successfully.
